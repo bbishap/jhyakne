@@ -6,6 +6,7 @@ import ResponsiveAppBar from "../../components/header";
 import { SingleSelect } from "../../components/singleSelect";
 import { LastForm } from "../../components/lastForm";
 import { StepperComponent } from "../../components/stepper";
+import Header from "../../components/header";
 
 const stepperSteps = ["Step1", "Step2"];
 
@@ -58,7 +59,7 @@ export const HomePage = () => {
 
   return (
     <>
-      {console.log(formData, "formData")}
+      <Header />
       <div>
         <div>
           <StepperComponent steps={stepperSteps} activeStep={activeStep} />
