@@ -4,6 +4,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { InputLabel } from "@mui/material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -16,19 +17,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
 function getStyles(name: string, personName: string[], theme: Theme) {
   return {
     fontWeight:
@@ -38,38 +26,42 @@ function getStyles(name: string, personName: string[], theme: Theme) {
   };
 }
 
-interface Props {}
+interface Props {
+  options: string[];
+  label: string;
+  name: string;
+  value: any;
+  onSelect: (e: SelectChangeEvent) => void;
+}
 
-const MultipleSelect: React.FC<Props> = () => {
+const MultipleSelect: React.FC<Props> = ({
+  options,
+  label,
+  name,
+  value,
+  onSelect,
+}) => {
   const theme = useTheme();
-  const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
-
-  const handleChange = (event: SelectChangeEvent<typeof selectedValues>) => {
-    const {
-      target: { value },
-    } = event;
-    setSelectedValues(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
 
   return (
     <div>
-      <FormControl fullWidth>
-        {/* <InputLabel id="demo-multiple-name-label">Name</InputLabel> */}
+      <FormControl fullWidth variant="filled">
+        <InputLabel>{label}</InputLabel>
         <Select
+          name={name}
+          variant="filled"
+          label={label}
           multiple
-          value={selectedValues}
-          onChange={handleChange}
-          input={<OutlinedInput label="Name" />}
+          value={value}
+          onChange={onSelect}
+          input={<OutlinedInput label={label} />}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
+          {options.map((name) => (
             <MenuItem
               key={name}
               value={name}
-              style={getStyles(name, selectedValues, theme)}
+              style={getStyles(name, value, theme)}
             >
               {name}
             </MenuItem>

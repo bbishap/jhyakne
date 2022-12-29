@@ -10,33 +10,36 @@ interface menuItem {
 }
 
 interface Props {
-  variant?: "standard" | "filled";
+  variant?: "standard" | "filled" | "outlined";
   label: string;
   menuItems: menuItem[];
+  name: string;
+  onSelect: (e: SelectChangeEvent) => void;
+  value: string;
 }
 
 export const SingleSelect: React.FC<Props> = ({
-  variant = "standard",
+  variant = "outlined",
   label,
   menuItems,
+  name,
+  value,
+  onSelect,
 }) => {
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
-
   return (
     <FormControl fullWidth variant={variant}>
       <InputLabel id="demo-simple-select-label">{label}</InputLabel>
       <Select
-        value={age}
+        name={name}
+        value={value}
         label={label}
-        onChange={handleChange}
+        onChange={onSelect}
         defaultValue={undefined}
       >
         {menuItems.map((data) => (
-          <MenuItem value={data.value}>{data.label}</MenuItem>
+          <MenuItem value={data.value} key={data.value}>
+            {data.label}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>
