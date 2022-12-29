@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import App from "../../App";
 import { ButtonComponent } from "../../components/button";
+import ResponsiveAppBar from "../../components/header";
 import { SingleSelect } from "../../components/singleSelect";
 import { StepperComponent } from "../../components/stepper";
 import { TextInput } from "../../components/textInput";
@@ -25,6 +26,7 @@ export const HomePage = () => {
   return (
     // <AppContext>
     <div>
+      <ResponsiveAppBar />
       <div>
         <StepperComponent steps={stepperSteps} activeStep={activeStep} />
       </div>
