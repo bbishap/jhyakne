@@ -26,32 +26,40 @@ export const BasicForm: React.FC<Props> = ({
 }) => {
   const handleChange = () => {};
   return (
-    <div style={{ maxWidth: 300 }}>
-      <TextInput
-        name="name"
-        label="Name"
-        value={formData.name}
-        onChange={handleTextChange}
-      />
-      <MultipleSelect
-        onSelect={handleSelect}
-        value={formData.sport}
-        name="sport"
-        label="Sport"
-        options={sportOptions}
-      />
-      <SingleSelect
-        value={formData.gender}
-        name="gender"
-        label="Gender"
-        onSelect={handleTextChange}
-        menuItems={genderSelectItems}
-      />
-      <DatePicker
-        label="Date of birth"
-        value={formData.dob}
-        onChange={handleChange}
-      />
-    </div>
+    <>
+      <div style={{ margin: "12px 0" }}>
+        <TextInput
+          name="name"
+          label="Name"
+          value={formData.name}
+          onChange={handleTextChange}
+        />
+      </div>
+      <div style={{ margin: "12px 0" }}>
+        <MultipleSelect
+          onSelect={handleSelect}
+          value={formData.sport}
+          name="sport"
+          label="Sport"
+          options={sportOptions}
+        />
+      </div>
+      <div style={{ margin: "12px 0" }}>
+        <SingleSelect
+          value={formData.gender}
+          name="gender"
+          label="Gender"
+          onSelect={handleTextChange}
+          menuItems={genderSelectItems}
+        />
+      </div>
+      <div style={{ margin: "12px 0" }}>
+        <DatePicker
+          label="Date of birth"
+          value={formData.dob}
+          onChange={handleChange}
+        />
+      </div>
+    </>
   );
 };

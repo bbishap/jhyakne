@@ -9,25 +9,31 @@ interface Props {
 
 export const LastForm: React.FC<Props> = ({ handleTextChange, formData }) => {
   return (
-    <div style={{ maxWidth: 300 }}>
-      <TextInput
-        value={formData.description}
-        label="Description"
-        name="description"
-        onChange={handleTextChange}
-      />
-      <TextInput
-        label="Location"
-        name="location"
-        onChange={handleTextChange}
-        value={formData.location}
-      />
-      <TextInput
-        label="Team"
-        name="team"
-        onChange={handleTextChange}
-        value={formData.team}
-      />
-    </div>
+    <>
+      <div style={{ margin: "12px 0" }}>
+        <TextInput
+          value={formData.description}
+          label="Description"
+          name="description"
+          onChange={handleTextChange}
+        />
+      </div>
+      <div style={{ margin: "12px 0" }}>
+        <TextInput
+          label="Location"
+          name="location"
+          onChange={handleTextChange}
+          value={formData.location}
+        />
+      </div>
+      <div style={{ margin: "12px 0" }}>
+        <TextInput
+          label="Team"
+          name="team"
+          onChange={handleTextChange}
+          value={formData.team}
+        />
+      </div>
+    </>
   );
 };

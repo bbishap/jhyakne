@@ -1,4 +1,5 @@
 import { SelectChangeEvent } from "@mui/material";
+import Container from "@mui/material/Container";
 import { ChangeEvent, useState } from "react";
 import { BasicForm } from "../../components/basicForm";
 import { ButtonComponent } from "../../components/button";
@@ -60,34 +61,41 @@ export const HomePage = () => {
   return (
     <>
       <Header />
-      <div>
+      <Container maxWidth="lg" sx={{ marginTop: "30px" }}>
         <div>
-          <StepperComponent steps={stepperSteps} activeStep={activeStep} />
+          <div>
+            <StepperComponent steps={stepperSteps} activeStep={activeStep} />
+          </div>
+          <Container maxWidth="sm">
+            <div>
+              {activeStep === 1 ? (
+                <LastForm
+                  formData={formData}
+                  handleTextChange={handleTextChange}
+                />
+              ) : (
+                <BasicForm
+                  formData={formData}
+                  handleTextChange={handleTextChange}
+                  handleSelect={handleSelect}
+                />
+              )}
+            </div>
+            <div>
+              {activeStep !== 0 ? (
+                <ButtonComponent
+                  label="Previous"
+                  onClick={handlePreviousButtonClick}
+                />
+              ) : null}
+              <ButtonComponent
+                label={activeStep === 1 ? "Submit" : "Next"}
+                onClick={handleNextButtonClick}
+              />
+            </div>
+          </Container>
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          {activeStep === 1 ? (
-            <LastForm formData={formData} handleTextChange={handleTextChange} />
-          ) : (
-            <BasicForm
-              formData={formData}
-              handleTextChange={handleTextChange}
-              handleSelect={handleSelect}
-            />
-          )}
-        </div>
-        <div>
-          {activeStep !== 0 ? (
-            <ButtonComponent
-              label="Previous"
-              onClick={handlePreviousButtonClick}
-            />
-          ) : null}
-          <ButtonComponent
-            label={activeStep === 1 ? "Submit" : "Next"}
-            onClick={handleNextButtonClick}
-          />
-        </div>
-      </div>
+      </Container>
     </>
   );
 };
